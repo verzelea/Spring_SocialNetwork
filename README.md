@@ -2,7 +2,7 @@
 
 # Authors
 
-@verzelea - Arthur Verzele
-@Un-dev - Francois Lannoy
-@Skiadram - Neel Coffin
-@Galimede - Mathieu Degand
+* @verzelea - Arthur Verzele
+* @Un-dev - Francois Lannoy
+* @Skiadram - Neel Coffin
+* @Galimede - Mathieu Degand
