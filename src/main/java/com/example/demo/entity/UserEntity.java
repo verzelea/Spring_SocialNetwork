@@ -30,7 +30,7 @@ public class UserEntity {
     @JoinTable(name = "friend",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "user_id"))
-    private Set<UserEntity> users;
+    private Set<UserEntity> users_list;
 
     public UserEntity(){}
 

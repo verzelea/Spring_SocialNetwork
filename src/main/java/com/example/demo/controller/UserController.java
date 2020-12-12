@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Optional;
+
 import com.example.demo.entity.UserEntity;
 import com.example.demo.services.userService.UserService;
 
@@ -14,7 +16,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/user")
-    public Iterable<UserEntity> getAlluserParam(){
+    public Iterable<UserEntity> getAllUser(){
         return this.userService.getAlluser();
+    }
+
+    @GetMapping("/user/{id}")
+    public Optional<UserEntity> getUserById(@PathVariable("id") int id){
+        return this.userService.getUserById(id);
     }
 }

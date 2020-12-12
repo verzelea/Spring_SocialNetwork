@@ -1,5 +1,7 @@
 package com.example.demo.services.postService;
 
+import java.util.Optional;
+
 import com.example.demo.entity.PostEntity;
 import com.example.demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +18,11 @@ public class PostServiceImplement implements PostService{
     @Override
     public Iterable<PostEntity> getAllpost() {
         return this.postRepository.findAllpost();
+    }
+
+    @Transactional
+    @Override
+    public Optional<PostEntity> getPostById(int id){
+        return this.postRepository.findById(id);
     }
 }

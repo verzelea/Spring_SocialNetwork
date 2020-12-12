@@ -1,5 +1,7 @@
 package com.example.demo.services.userService;
 
+import java.util.Optional;
+
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
 
@@ -17,5 +19,11 @@ public class UserServiceImplement implements UserService{
     @Override
     public Iterable<UserEntity> getAlluser() {
         return this.userRepository.findAlluser();
+    }
+
+    @Transactional
+    @Override
+    public Optional<UserEntity> getUserById(int id){
+        return this.userRepository.findById(id);
     }
 }

@@ -9,6 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path="user")
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    @Query(value = "select * from Users", nativeQuery = true)
+    @Query(value = "select * from User", nativeQuery = true)
     Iterable<UserEntity> findAlluser();
 }
