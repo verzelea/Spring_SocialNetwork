@@ -15,12 +15,12 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @GetMapping("/post")
+    @GetMapping("/")
     public Iterable<PostEntity> getAllPost(){
         return this.postService.getAllpost();
     }
 
-    @GetMapping("/post/{id}")
+    @GetMapping("/{id}")
     public Optional<PostEntity> getUserById(@PathVariable("id") int id){
         return this.postService.getPostById(id);
     }
