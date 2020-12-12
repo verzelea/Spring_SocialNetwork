@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,10 +27,20 @@ public class UserEntity {
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinTable(name = "friend",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "user_id"))
-    private Set<UserEntity> users_list;
+    @JoinTable(name="friend",
+    joinColumns=@JoinColumn(name="person_id"),
+    inverseJoinColumns=@JoinColumn(name="friend_id")
+    )
+    private List<UserEntity> friends;
+
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinTable(name="friend",
+    joinColumns=@JoinColumn(name="friend_id"),
+    inverseJoinColumns=@JoinColumn(name="person_id")
+    )
+    private List<UserEntity> friendOf;
 
     public UserEntity(){}
 
