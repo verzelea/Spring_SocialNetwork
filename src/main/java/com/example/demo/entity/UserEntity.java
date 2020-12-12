@@ -3,7 +3,14 @@ package com.example.demo.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -16,6 +23,14 @@ public class UserEntity {
     private String password;
     private Date birthday;
     private String description;
+
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinTable(name = "friend",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "user_id"))
+    private Set<UserEntity> users;
 
     public UserEntity(){}
 
