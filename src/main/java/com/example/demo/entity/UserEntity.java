@@ -25,8 +25,7 @@ public class UserEntity {
     private String description;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany()
     @JoinTable(name="friend",
     joinColumns=@JoinColumn(name="person_id"),
     inverseJoinColumns=@JoinColumn(name="friend_id")
@@ -34,8 +33,7 @@ public class UserEntity {
     private List<UserEntity> friends;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany()
     @JoinTable(name="friend",
     joinColumns=@JoinColumn(name="friend_id"),
     inverseJoinColumns=@JoinColumn(name="person_id")
