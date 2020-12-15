@@ -17,7 +17,8 @@ import java.util.List;
 @Table(name = "user")
 public class UserEntity {
     @Id
-    private int user_id;
+    private int userId;
+    private String username;
     private String nom;
     private String prenom;
     private String password;

@@ -1,9 +1,10 @@
 CREATE TABLE IF NOT EXISTS User
 (
     user_id     integer NOT NULL ,
+    username    varchar(100) NOT NULL,
     nom         varchar(45) NOT NULL ,
     prenom      varchar(45) NOT NULL ,
-    password    nvarchar(45) NOT NULL ,
+    password    varchar(45) NOT NULL ,
     birthday    date NULL ,
     description nvarchar(200) NULL ,
 
