@@ -9,4 +9,6 @@ public interface UserService {
     public Iterable<UserEntity>getAlluser();
 
     Optional<UserEntity> getUserById(int id);
+
+    public UserEntity save(UserEntity user);
 }
