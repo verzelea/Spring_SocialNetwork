@@ -33,14 +33,17 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         return this.userRepository.findById(id);
     }
 
+
     @Transactional
     @Override
     public UserEntity save(UserEntity user) {
         return this.userRepository.save(user);
     }
 
+
     @Transactional
-    public UserEntity findUserByUserName(String username) {
+    @Override
+    public UserEntity getUserByUserName(String username) {
         return this.userRepository.findByUsername(username);
     }
 

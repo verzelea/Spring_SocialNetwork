@@ -11,4 +11,6 @@ public interface UserService {
     Optional<UserEntity> getUserById(int id);
 
     public UserEntity save(UserEntity user);
+
+     UserEntity getUserByUserName(String username);
 }
