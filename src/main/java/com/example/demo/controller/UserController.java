@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -45,4 +46,31 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/users/{requester_id}/requestFriend")
+    public ResponseEntity requestFriend(@PathVariable("requester_id") int requester_id, @RequestBody int requested_id){
+
+        UserEntity requested = userService.getUserById(requested_id).get();
+        userService.getUserById(requester_id)
+                .map(requester -> {
+                            List list1 = requester.getRequestTo();
+                            list1.add(requested);
+                            requester.setRequestTo(list1);
+                            List list2 = requested.getRequestFrom();
+                            list2.add(requester);
+                            return userService.save(requester);
+                        }
+                );
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    public void acceptRequest(){
+        //TODO
+    }
+
+    public void denyRequest(){
+        //TODO
+    }
+
 }
