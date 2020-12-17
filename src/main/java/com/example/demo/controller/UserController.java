@@ -49,15 +49,13 @@ public class UserController {
 
     @PostMapping("/users/{requester_id}/requestFriend")
     public ResponseEntity requestFriend(@PathVariable("requester_id") int requester_id, @RequestBody int requested_id){
-
+        System.out.println(requested_id);
         UserEntity requested = userService.getUserById(requested_id).get();
         userService.getUserById(requester_id)
                 .map(requester -> {
                             List list1 = requester.getRequestTo();
                             list1.add(requested);
                             requester.setRequestTo(list1);
-                            List list2 = requested.getRequestFrom();
-                            list2.add(requester);
                             return userService.save(requester);
                         }
                 );
