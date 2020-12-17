@@ -16,7 +16,9 @@ import java.util.List;
 @Data
 @Table(name = "user")
 public class UserEntity {
+   
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     private String username;
     private String nom;

@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Data
 @Table(name = "post")
 public class PostEntity {
+   
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_id;
     private String text;
     private int user_id;
