@@ -73,6 +73,8 @@ public class UserController {
 
         userService.addFriends(requested_id, requester_id);
         userService.addFriends(requester_id, requested_id);
+        userService.deleteRequest(requester_id, requested_id);
+
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

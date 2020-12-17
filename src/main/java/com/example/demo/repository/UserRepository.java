@@ -26,4 +26,8 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     @Modifying
     @Query(value = "insert into Friend (person_id, friend_id) values (?1, ?2)", nativeQuery=true)
     void addFriends(int person_id, int friend_id);
+
+    @Modifying
+    @Query(value = "DELETE from request where requester_id=?1 AND requested_id=?2", nativeQuery=true)
+    void deleteRequest(int requester_id, int requested_id);
 }

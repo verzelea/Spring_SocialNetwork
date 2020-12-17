@@ -17,4 +17,6 @@ public interface UserService {
      public void updateUser(UserEntity user);
 
      public void addFriends(int person_id, int friend_id);
+
+     public void deleteRequest(int requester_id, int requested_id);
 }

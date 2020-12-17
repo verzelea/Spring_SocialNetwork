@@ -52,6 +52,9 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         return this.userRepository.findByUsername(username);
     }
 
+    @Transactional
+    public void deleteRequest(int requester_id, int requested_id){this.userRepository.deleteRequest(requester_id, requested_id);}
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = this.userRepository.findByUsername(username);
