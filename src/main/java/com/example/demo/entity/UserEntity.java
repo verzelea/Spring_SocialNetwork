@@ -41,6 +41,23 @@ public class UserEntity {
     )
     private List<UserEntity> friendOf;
 
+    @JsonIgnore
+    @OneToMany()
+    @JoinTable(name="request",
+    joinColumns=@JoinColumn(name="requester_id"),
+    inverseJoinColumns=@JoinColumn(name="requested_id")
+    )
+    private List<UserEntity> requestFrom;
+
+    @JsonIgnore
+    @OneToMany()
+    @JoinTable(name="request",
+    joinColumns=@JoinColumn(name="requester_id"),
+    inverseJoinColumns=@JoinColumn(name="requester_id")
+    )
+    private List<UserEntity> requestTo;
+
+
     public UserEntity(){}
 
 }
