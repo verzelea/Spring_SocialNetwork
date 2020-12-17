@@ -70,16 +70,9 @@ public class UserController {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserEntity accepter = userService.getUserByUserName(username);
         UserEntity requester = userService.getUserById(requester_id).get();
-        List accepterFriends = accepter.getFriends();
-        accepterFriends.add(requester);
-        accepter.setFriends(accepterFriends);
-        List requesterFriends = requester.getFriends();
-        requesterFriends.add(accepter);
-        requester.setFriends(requesterFriends);
-        List accepterRequests = accepter.getRequestFrom();
-        accepterRequests.remove(requester);
-        accepter.setRequestFrom(accepterRequests);
-        userService.flush();
+
+        userService.addFriends(requested_id, requester_id);
+        userService.addFriends(requester_id, requested_id);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

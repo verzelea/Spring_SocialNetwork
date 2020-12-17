@@ -41,7 +41,10 @@ public class UserServiceImplement implements UserService, UserDetailsService {
     }
 
     @Transactional
-    public void flush(){this.userRepository.flush();}
+    public void updateUser(UserEntity user){this.userRepository.updateUser(user);}
+
+    @Transactional
+    public void addFriends(int person_id, int friend_id){this.userRepository.addFriends(person_id, friend_id);}
 
     @Transactional
     @Override

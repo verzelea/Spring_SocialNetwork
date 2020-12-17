@@ -14,5 +14,7 @@ public interface UserService {
 
      UserEntity getUserByUserName(String username);
 
-     public void flush();
+     public void updateUser(UserEntity user);
+
+     public void addFriends(int person_id, int friend_id);
 }
