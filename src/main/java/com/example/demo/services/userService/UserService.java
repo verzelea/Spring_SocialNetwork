@@ -13,4 +13,6 @@ public interface UserService {
     public UserEntity save(UserEntity user);
 
      UserEntity getUserByUserName(String username);
+
+     public void flush();
 }

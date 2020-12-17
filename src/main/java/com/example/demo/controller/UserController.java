@@ -66,17 +66,20 @@ public class UserController {
     }
 
     @GetMapping("/users/{requested_id}/accept/{requester_id}")
-    public ResponseEntity acceptRequest(@PathVariable("requested_id") int requested_id, @RequestBody int requester_id){
+    public ResponseEntity acceptRequest(@PathVariable("requested_id") int requested_id, @PathVariable("requester_id") int requester_id){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserEntity requested = userService.getUserByUserName(username);
+        UserEntity accepter = userService.getUserByUserName(username);
         UserEntity requester = userService.getUserById(requester_id).get();
-        System.out.println(requested.getUserId());
-        List userFriends = requested.getFriends();
-        userFriends.add(requester);
-        requested.setFriends(userFriends);
-        List userRequests = requested.getRequestFrom();
-        userRequests.remove(requester);
-        userService.save(requested);
+        List accepterFriends = accepter.getFriends();
+        accepterFriends.add(requester);
+        accepter.setFriends(accepterFriends);
+        List requesterFriends = requester.getFriends();
+        requesterFriends.add(accepter);
+        requester.setFriends(requesterFriends);
+        List accepterRequests = accepter.getRequestFrom();
+        accepterRequests.remove(requester);
+        accepter.setRequestFrom(accepterRequests);
+        userService.flush();
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

@@ -40,6 +40,8 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         return this.userRepository.save(user);
     }
 
+    @Transactional
+    public void flush(){this.userRepository.flush();}
 
     @Transactional
     @Override
