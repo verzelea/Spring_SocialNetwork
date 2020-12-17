@@ -52,7 +52,7 @@ public class UserEntity {
     @JsonIgnore
     @OneToMany()
     @JoinTable(name="request",
-    joinColumns=@JoinColumn(name="requester_id"),
+    joinColumns=@JoinColumn(name="requested_id"),
     inverseJoinColumns=@JoinColumn(name="requester_id")
     )
     private List<UserEntity> requestTo;
