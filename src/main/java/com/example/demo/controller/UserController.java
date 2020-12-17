@@ -65,16 +65,19 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/users/{requested_id}/accept/")
-    public void acceptRequest(@PathVariable("requested_id") int requested_id){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication());
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getPrincipal());
-        userService.getUserByUsername((String) authentication.getPrincipal());
-    }
-
-    public void denyRequest(){
-        //TODO
+    @GetMapping("/users/{requested_id}/accept/{requester_id}")
+    public ResponseEntity acceptRequest(@PathVariable("requested_id") int requested_id, @RequestBody int requester_id){
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity requested = userService.getUserByUserName(username);
+        UserEntity requester = userService.getUserById(requester_id).get();
+        System.out.println(requested.getUserId());
+        List userFriends = requested.getFriends();
+        userFriends.add(requester);
+        requested.setFriends(userFriends);
+        List userRequests = requested.getRequestFrom();
+        userRequests.remove(requester);
+        userService.save(requested);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }

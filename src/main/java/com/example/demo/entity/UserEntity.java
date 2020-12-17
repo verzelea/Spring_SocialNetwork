@@ -26,7 +26,7 @@ public class UserEntity {
     private String description;
 
     @JsonIgnore
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="friend",
     joinColumns=@JoinColumn(name="person_id"),
     inverseJoinColumns=@JoinColumn(name="friend_id")
@@ -42,7 +42,7 @@ public class UserEntity {
     private List<UserEntity> friendOf;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany()
     @JoinTable(name="request",
     joinColumns=@JoinColumn(name="requested_id"),
     inverseJoinColumns=@JoinColumn(name="requester_id")
