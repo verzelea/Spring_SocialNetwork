@@ -48,3 +48,24 @@ ALTER TABLE Friend
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ;
+
+CREATE TABLE IF NOT EXISTS Request
+(
+    requester_id INT NOT NULL,
+    requested_id INT NOT NULL,
+    PRIMARY KEY(requester_id, requested_id)
+);
+
+ALTER TABLE Request
+    ADD FOREIGN KEY (requester_id)
+        REFERENCES User(user_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+;
+
+ALTER TABLE Request
+    ADD FOREIGN KEY (requested_id)
+        REFERENCES User(user_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+;

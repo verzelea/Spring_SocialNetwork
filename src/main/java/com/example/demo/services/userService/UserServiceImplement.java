@@ -33,6 +33,7 @@ public class UserServiceImplement implements UserService, UserDetailsService {
         return this.userRepository.findById(id);
     }
 
+
     @Transactional
     @Override
     public UserEntity save(UserEntity user) {
@@ -40,9 +41,19 @@ public class UserServiceImplement implements UserService, UserDetailsService {
     }
 
     @Transactional
-    public UserEntity findUserByUserName(String username) {
+    public void updateUser(UserEntity user){this.userRepository.updateUser(user);}
+
+    @Transactional
+    public void addFriends(int person_id, int friend_id){this.userRepository.addFriends(person_id, friend_id);}
+
+    @Transactional
+    @Override
+    public UserEntity getUserByUserName(String username) {
         return this.userRepository.findByUsername(username);
     }
+
+    @Transactional
+    public void deleteRequest(int requester_id, int requested_id){this.userRepository.deleteRequest(requester_id, requested_id);}
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
