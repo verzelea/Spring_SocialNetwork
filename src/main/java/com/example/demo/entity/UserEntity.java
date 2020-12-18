@@ -20,6 +20,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    @Column(unique=true)
     private String username;
     private String nom;
     private String prenom;

@@ -1,0 +1,514 @@
+{
+	"info": {
+		"_postman_id": "889520d3-9116-42a6-80eb-7e4a43ad3d59",
+		"name": "Spring-Social Network",
+		"description": "story for spring network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sign up / Login scenario",
+			"item": [
+				{
+					"name": "http://localhost:8080/users/sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"Joe\",\r\n    \"prenom\": \"Dalton\",\r\n    \"username\": \"jdalton\",\r\n    \"password\": \"luckyluke\",\r\n    \"birthday\": \"1998-10-02\",\r\n    \"description\": \"The best of the dalton's\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-up"
+							]
+						},
+						"description": "Create user"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jdalton\",\r\n    \"password\": \"luckyluke\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						},
+						"description": "When you login you will get the token in the header response that you will need in the header\nLike this: \"Authorization: Bearer XXX.YYY.ZZZ\""
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Add friend scenario (send a friend request and accept it)",
+			"item": [
+				{
+					"name": "localhost:8080/users/1/requestFriend",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "6",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/1/requestFriend",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1",
+								"requestFriend"
+							]
+						},
+						"description": "user 1 request friend to user 6 (new user)"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/6/accept/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/users/6/accept/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"6",
+								"accept",
+								"1"
+							]
+						},
+						"description": "user 6 accept request from user 1 (they are now friends) "
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "/posts endpoint",
+			"item": [
+				{
+					"name": "See posts of friends and public posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/posts/show",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"show"
+							]
+						},
+						"description": "show viewable post (id 1 is private so we cannot see the post)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts"
+							]
+						},
+						"description": "show viewable post (id 1 is private so we cannot see the post)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /posts/id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /posts/id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Non aux manifestations!\",\n\t\"user_id\": 2,\n\t\"private_post\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"4"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /posts/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"The cake is a lie\",\n\t\"user_id\": 5,\n\t\"private_post\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /posts/id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/posts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/users endpoint",
+			"item": [
+				{
+					"name": "GET /users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /users/id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"titi\",\n\t\"prenom\": \"toto\",\n\t\"username\": \"tata\",\n\t\"password\": \"tota\",\n\t\"birthday\": \"1998-10-02\",\n\t\"description\": \"The best of the tato\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\": \"sasa\",\n\t\"prenom\": \"sisi\",\n\t\"username\": \"sosa\",\n    \"password\": \"soso\",\n\t\"birthday\": \"1998-10-02\",\n\t\"description\": \"The best of the sasa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /users/id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqZGFsdG9uIiwiZXhwIjoxNjA5MTU3MzU4fQ.u3ui_KBS0umSP__HzzpdWiZNFuQ3s_msI1ldmXNd30wxGxKK5hFGgig_nkMqzzQpqUwAWe87WYyCHgst1-tAow",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
