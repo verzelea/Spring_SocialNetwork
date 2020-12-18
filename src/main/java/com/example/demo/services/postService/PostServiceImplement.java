@@ -25,4 +25,10 @@ public class PostServiceImplement implements PostService{
     public Optional<PostEntity> getPostById(int id){
         return this.postRepository.findById(id);
     }
+
+    @Transactional
+    @Override
+    public Iterable<PostEntity> showPosts(int user_id) {
+        return this.postRepository.showPosts(user_id);
+    }
 }

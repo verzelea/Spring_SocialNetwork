@@ -9,4 +9,6 @@ public interface PostService {
     public Iterable<PostEntity>getAllpost();
 
     Optional<PostEntity> getPostById(int id);
+
+    Iterable<PostEntity>showPosts(int user_id);
 }
