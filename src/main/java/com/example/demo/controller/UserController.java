@@ -78,4 +78,14 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @GetMapping("/users/{requested_id}/deny/{requester_id}")
+    public ResponseEntity denyRequest(@PathVariable("requested_id") int requested_id, @PathVariable("requester_id") int requester_id){
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity accepter = userService.getUserByUserName(username);
+        UserEntity requester = userService.getUserById(requester_id).get();
+
+        userService.deleteRequest(requester_id, requested_id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }
