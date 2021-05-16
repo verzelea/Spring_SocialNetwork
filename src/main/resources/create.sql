@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS User
 CREATE TABLE IF NOT EXISTS Post
 (
     post_id integer NOT NULL ,
-    text    nvarchar(45) NOT NULL ,
+    title   varchar(45) NOT NULL,
+    text    varchar(45) NOT NULL ,
     user_id integer NOT NULL ,
     private_post binary NOT NULL ,
 

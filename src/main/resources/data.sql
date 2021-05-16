@@ -4,9 +4,9 @@ INSERT INTO User (user_id,username, nom, prenom, password, birthday, description
 INSERT INTO User (user_id,username, nom, prenom, password, birthday, description) VALUES (4, 'user4','pat', 'frederic', '4321', '1978-10-12', 'love pancake');
 INSERT INTO User (user_id,username, nom, prenom, password, birthday, description) VALUES (5, 'user5','gaulois', 'francois', '0000', '2003-01-23', 'love pancake');
 
-INSERT INTO Post (post_id, text, user_id, private_post) VALUES (1, 'Hello', 1, 1);
-INSERT INTO Post (post_id, text, user_id, private_post) VALUES (3, 'J aime les cookies', 4, 0);
-INSERT INTO Post (post_id, text, user_id, private_post) VALUES (4, 'DITES NON AU MANIDESTATION', 2, 0);
+INSERT INTO Post (post_id, title, text, user_id, private_post) VALUES (1, 'Hello world', 'Hello', 1, 1);
+INSERT INTO Post (post_id, title, text, user_id, private_post) VALUES (3, 'I love cookies', 'J aime les cookies', 4, 0);
+INSERT INTO Post (post_id, title, text, user_id, private_post) VALUES (4, 'manifestation', 'DITES NON AU MANIDESTATION', 2, 0);
 
 INSERT INTO Friend (person_id, friend_id) VALUES (1, 2);
 INSERT INTO Friend (person_id, friend_id) VALUES (2, 3);

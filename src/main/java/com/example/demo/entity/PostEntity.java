@@ -13,6 +13,7 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_id;
     private String text;
+    private String title;
     private int user_id;
     private boolean private_post;
 
