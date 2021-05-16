@@ -89,4 +89,10 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @GetMapping("/users/request/{requested_id}")
+    public @ResponseBody Iterable<String> showRequests(@PathVariable("requested_id") int requested_id){
+
+        return userService.showFriendsRequests(requested_id);
+    }
+
 }

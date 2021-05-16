@@ -19,4 +19,6 @@ public interface UserService {
      public void addFriends(int person_id, int friend_id);
 
      public void deleteRequest(int requester_id, int requested_id);
+
+     public Iterable<String> showFriendsRequests(int requested_id);
 }

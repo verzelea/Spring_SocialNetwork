@@ -30,4 +30,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
     @Modifying
     @Query(value = "DELETE from request where requester_id=?1 AND requested_id=?2", nativeQuery=true)
     void deleteRequest(int requester_id, int requested_id);
+
+    @Query(value = "select requester_id from request where requested_id=?1", nativeQuery = true)
+    Iterable<String> showFriendsRequests(int requested_id);
 }

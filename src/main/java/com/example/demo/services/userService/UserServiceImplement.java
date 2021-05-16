@@ -67,4 +67,9 @@ public class UserServiceImplement implements UserService, UserDetailsService {
             emptyList()
         );
     }
+
+    @Transactional
+    public Iterable<String> showFriendsRequests(int requested_id) {
+        return this.userRepository.showFriendsRequests(requested_id);
+    }
 }
