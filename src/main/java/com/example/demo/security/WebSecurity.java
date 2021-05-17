@@ -45,7 +45,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       return cors;
     }).and().headers().frameOptions().disable().and().csrf().disable().authorizeRequests()
         .antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
+        .antMatchers(HttpMethod.GET, "/users").permitAll()
         .antMatchers(HttpMethod.GET, "/posts").permitAll()
+        .antMatchers(HttpMethod.POST, "/posts").permitAll()
         .antMatchers(HttpMethod.POST, "/h2-console/**").permitAll()
         .antMatchers(HttpMethod.POST, "/users").permitAll()
         .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
